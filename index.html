@@ -1,0 +1,75 @@
+<script>
+$(function() {
+    $('#tabla').on('click', '.btn-action-delete', function(ev) {
+        // obtener el boton presionado
+        var btn = ev.target,
+            $btn = $(btn),
+            $row; 
+        
+        $row = $btn.parents('tr');
+        
+        Ply.dialog({
+          "intro": {
+            ui: "confirm",
+            data: {
+              text: "Dese eliminar esta fila?",
+              ok: "Si",
+              cancel: "No"
+            },
+            next: "congratulations", // OK button
+            nextEffect: "3d-flip[180,-180]",
+            back: "exit", // Cancel button
+            backEffect: "scale"
+          }
+        })
+        .done(function (ui) {
+            $.ajax({
+                url: '' // pones tu url
+                /* COMPLETAS LOS PARAMETROS QUE NECESITES PARA HACER TU PETICION JAX */
+            })
+            .done(function() {
+                $row.remove();
+                alert('Ok');
+            });
+        });
+    });
+});
+
+</script>
+
+<table id="tabla">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Pablo</td>
+            <td class="btn-action-edit"><button>Editar</button></td>
+            <td class="btn-action-delete"><button>Eliminar</button></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Juan</td>
+            <td class="btn-action-edit"><button>Editar</button></td>
+            <td class="btn-action-delete"><button>Eliminar</button></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Marcos</td>
+            <td class="btn-action-edit"><button>Editar</button></td>
+            <td class="btn-action-delete"><button>Eliminar</button></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Enrique</td>
+            <td class="btn-action-edit"><button>Editar</button></td>
+            <td class="btn-action-delete"><button>Eliminar</button></td>
+        </tr>
+    </tbody>
+</table>
